@@ -212,7 +212,7 @@ w6img=imread('scene3_flip', 'JPG');
 %w7img=imread('male7', 'JPG');
 %w8img=imread('male8', 'JPG');
 
-faces={'scene1','scene1_flip','scene2','scene2_flip', 'scene3', 'scene3_flip', 'scene3', 'scene3_flip'}; % TODO REPLACE CHARS
+faces={'scene1','scene1_flip','scene2','scene2_flip', 'scene3', 'scene3_flip'}; % TODO REPLACE CHARS
 %, 'male7', 'male8'
 
 % Create images
@@ -225,7 +225,7 @@ w6=Screen('MakeTexture', window, double(w6img));
 %w7=Screen('MakeTexture', window, double(w7img));
 %w8=Screen('MakeTexture', window, double(w8img));
 
-texturePtrs=[w1 w2 w3 w4 w5 w6 w5 w6];
+texturePtrs=[w1 w2 w3 w4 w5 w6];
 %w7 w8
 % Setup practice faces
 pracfaces={'temp1', 'temp2', 'temp3', 'temp4', 'temp5', 'temp6'};
@@ -709,25 +709,25 @@ Screen('FillRect', window, [0 0 0]);
 for idx = 1:nTrials % trial loop TODO add rank-invis info
        
     
-     leftFaceType=stimMat(idx,1);  % Face type to show on left
-     rightFaceType=stimMat(idx,2);  % Face type to show on right
-     rankVis = stimMat(idx, 3);     % Indicate whether rank is visible or not
+     scene=stimMat(idx,1);  % Face type to show on left
+     imgFlip=stimMat(idx,2);  % Face type to show on right
+  %   rankVis = stimMat(idx, 3);      Indicate whether rank is visible or not
     
      curRNoise=rNoise(idx);         % Noise to add to reward this trial
      curGNoise=gNoise(idx,:);       % Noise to add to competence on this trial
-     curTexts=texturePtrs(1:8);
+     curTexts=texturePtrs(1:6);
         respmat(idx,21) = GetSecs - blockTime; % trial start relative to beginning of block 
 
         % Call presentSocialChoiceTrainV5 function to show a trial
         [respmat(idx,[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16])] = presentSocialChoiceTrainV5(window,...
             scr_rect,q_box,box1,box2,box3,box4,box5,boxp1,boxp2,boxp3,boxp4,boxp5,boxp6,boxp7,boxp8,...
-            faceAssign,curRNoise, curGNoise, leftFaceType,rightFaceType, rankVis,...
+            faceAssign,curRNoise, curGNoise, scene, imgFlip,...
             curTexts,blockTime,delayOff(idx),choiceOff(idx),feedbackOff(idx),trustOff(idx));
       
      % Record the rest of the data that is not saved above or in the
      % presentation script
-     respmat(idx,17)=leftFaceType;
-     respmat(idx,18)=rightFaceType;
+     respmat(idx,17)=scene;
+     respmat(idx,18)=imgFlip;
      respmat(idx,19)=ITI(idx);
      respmat(idx,20)=delay(idx);
      

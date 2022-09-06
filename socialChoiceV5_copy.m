@@ -34,7 +34,7 @@ stream = RandStream('mt19937ar','seed',sum(100*clock));
 RandStream.setGlobalStream(stream);
 % In other versions of Matlab: 
 %RandStream.setDefaultStream(RandStream('mt19937ar','seed',sum(100*clock)));
-% Randomize which face stimulus (1-8) gets assigned to which role; save this for later analysis 
+% Randomize which face stimulus (1-6) gets assigned to which role; save this for later analysis 
 faceAssign=randperm(6);
 save(['S' n 'faceAssign'],'faceAssign'); 
 
