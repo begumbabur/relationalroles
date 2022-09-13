@@ -1,5 +1,5 @@
 
-function [respMat ] = presentSocialChoiceTrainV5(window,scr_rect,...
+function [respMat ] = presentSocialChoiceTrainV5_copy(window,scr_rect,...
     pic_box,box1,box2,box3,box4,box5,boxp1,boxp2,boxp3,boxp4,boxp5,boxp6,boxp7,boxp8,faceAssign,curRNoise,curGNoise,...
     scene,imgFlip,curTexts,blockTime,delayOff,choiceOff,feedbackOff,trustOff)
 
@@ -28,6 +28,8 @@ respMat(16) = NaN; % Amount of points won
 faceTypes=scene;
 %  Create list of face images based on the mapping from face stimulus to
 %  face type, as randomized for this subject
+curTexts
+faceAssign
 faces=curTexts(faceAssign);
 % Set up boxes to display images
 source_rect=[2,2,288,216];
