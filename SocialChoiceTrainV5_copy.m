@@ -96,19 +96,19 @@ Screen('TextSize', window, 22);
 Screen('TextStyle', window, 1);
 
 % Set up dimensions for boxes to display target pictures and scales
-q_h = round(scr_rect(4)/2);
-q_w = round((1364*q_h)/648);
-q_l = scr_rect(3)/2 - round(q_w/2);
+q_h = round(scr_rect(4));
+q_w = round(q_h);
+q_l = scr_rect(3)/2;
 q_r = q_l + q_w;
-q_t = scr_rect(4) - q_h - 100;
+q_t = scr_rect(4) - q_h + 250;
 q_b = q_t + q_h;
 q_box = [q_l, q_t, q_r, q_b];
 
-lPic_h = round(q_b - round(q_h / 7)) - (q_t + round(q_h / 3));
-lPic_w = round((295*lPic_h)/295);
+lPic_h = round(q_b - round(q_h /7)) - (q_t + round(q_h / 3));
+lPic_w = round(lPic_h);
 lPic_t = q_t ;%+ round(q_h / 3);
 lPic_b = lPic_t + lPic_h;
-lPic_l = round(q_l + round(q_w / 20));
+lPic_l = round(q_l);
 lPic_r = lPic_l + lPic_w;
 lPic_box = [lPic_l, lPic_t, lPic_r, lPic_b];
 
@@ -116,7 +116,7 @@ rPic_h = round(q_b - round(q_h /4)) - (q_t + round(q_h / 3));
 rPic_w = round((295*rPic_h)/295);
 rPic_t = q_t ;%+ round(q_h / 3);
 rPic_b = rPic_t + rPic_h;
-rPic_r = round(q_r - round(q_w / 20));
+rPic_r = round(q_r);
 rPic_l = rPic_r - rPic_w;
 rPic_box = [rPic_l, rPic_t, rPic_r, rPic_b];
 
@@ -143,7 +143,7 @@ box1_l=scr_rect(1)+edge_width;
 box1_r=box1_l + box_w;
 box1=[box1_l, box_t, box1_r, box_b];
 
-box2_l=box1_r+20;
+box2_l=box1_r+190;
 box2_r=box2_l + box_w;
 box2=[box2_l, box_t, box2_r, box_b];
 
@@ -209,11 +209,8 @@ w3img=imread('scene2', 'JPG');
 w4img=imread('scene2_flip', 'JPG');
 w5img=imread('scene3', 'JPG');
 w6img=imread('scene3_flip', 'JPG');
-%w7img=imread('male7', 'JPG');
-%w8img=imread('male8', 'JPG');
 
 faces={'scene1','scene1_flip','scene2','scene2_flip', 'scene3', 'scene3_flip'}; % TODO REPLACE CHARS
-%, 'male7', 'male8'
 
 % Create images
 w1=Screen('MakeTexture', window, double(w1img));
@@ -222,11 +219,9 @@ w3=Screen('MakeTexture', window, double(w3img));
 w4=Screen('MakeTexture', window, double(w4img));
 w5=Screen('MakeTexture', window, double(w5img));
 w6=Screen('MakeTexture', window, double(w6img));
-%w7=Screen('MakeTexture', window, double(w7img));
-%w8=Screen('MakeTexture', window, double(w8img));
 
 texturePtrs=[w1 w2 w3 w4 w5 w6];
-%w7 w8
+
 % Setup practice faces
 pracfaces={'temp1', 'temp2', 'temp3', 'temp4', 'temp5', 'temp6'};
 
@@ -252,6 +247,59 @@ temp6 = Screen('MakeTexture', window, double(p6img));
 
 % Put textures in an array
 ptexts = [temp1 temp2 temp3 temp4 temp5 temp6];
+
+% Create images with green boxes around them. Shown after ps make their
+% choices in the feedback screen.  
+b1img=imread('1_green_sq', 'PNG');
+b2img=imread('1_orange_sq', 'PNG');
+b3img=imread('2_green_sq', 'PNG');
+b4img=imread('2_orange_sq', 'PNG');
+b5img=imread('3_blue_sq', 'PNG');
+b6img=imread('3_red_sq', 'PNG');
+b7img=imread('4_blue_sq', 'PNG');
+b8img=imread('4_red_sq', 'PNG');
+b9img=imread('5_brown_sq', 'PNG');
+b10img=imread('5_gray_sq', 'PNG');
+b11img=imread('6_brown_sq', 'PNG');
+b12img=imread('6_gray_sq', 'PNG');
+
+greenboxes={'1_green_sq','1_orange_sq','2_green_sq','2_orange_sq', '3_blue_sq', '3_red_sq', '4_blue_sq','4_red_sq', '5_brown_sq', '5_gray_sq', '6_brown_sq', '6_gray_sq'}; 
+
+% Create images
+b1=Screen('MakeTexture', window, double(b1img));
+b2=Screen('MakeTexture', window, double(b2img));
+b3=Screen('MakeTexture', window, double(b3img));
+b4=Screen('MakeTexture', window, double(b4img));
+b5=Screen('MakeTexture', window, double(b5img));
+b6=Screen('MakeTexture', window, double(b6img));
+b7=Screen('MakeTexture', window, double(b7img));
+b8=Screen('MakeTexture', window, double(b8img));
+b9=Screen('MakeTexture', window, double(b9img));
+b10=Screen('MakeTexture', window, double(b10img));
+b11=Screen('MakeTexture', window, double(b11img));
+b12=Screen('MakeTexture', window, double(b12img));
+
+texturePtrsBorders=[b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12];
+
+%Feed in the stock images
+s1img=imread('Octopus', 'PNG');
+s2img=imread('Dolphin', 'PNG');
+s3img=imread('Butterfly', 'PNG');
+s4img=imread('Elephant', 'PNG');
+s5img=imread('Parrot', 'PNG');
+s6img=imread('Porcupine', 'PNG');
+
+icons={'Octopus','Dolphin','Butterfly' 'Elephant', 'Parrot', 'Porcupine'}; % TODO REPLACE CHARS
+
+% Create stock images
+s1=Screen('MakeTexture', window, double(s1img));
+s2=Screen('MakeTexture', window, double(s2img));
+s3=Screen('MakeTexture', window, double(s3img));
+s4=Screen('MakeTexture', window, double(s4img));
+s5=Screen('MakeTexture', window, double(s5img));
+s6=Screen('MakeTexture', window, double(s6img));
+
+texturePtrsStocks=[s1 s2 s3 s4 s5 s6];
 
 %Read instructions from text file
     instruct_text=text2cells('instructionsTrain.txt');
@@ -716,13 +764,15 @@ for idx = 1:nTrials % trial loop TODO add rank-invis info
      curRNoise=rNoise(idx);         % Noise to add to reward this trial
      curGNoise=gNoise(idx,:);       % Noise to add to competence on this trial
      curTexts=texturePtrs(1:6);
+     curTextsBorders=texturePtrsBorders(1:12);
+     curTextsStocks=texturePtrsStocks(1:6);
         respmat(idx,21) = GetSecs - blockTime; % trial start relative to beginning of block 
 
         % Call presentSocialChoiceTrainV5 function to show a trial
         [respmat(idx,[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16])] = presentSocialChoiceTrainV5_copy(window,...
             scr_rect,q_box,box1,box2,box3,box4,box5,boxp1,boxp2,boxp3,boxp4,boxp5,boxp6,boxp7,boxp8,...
             faceAssign,curRNoise, curGNoise, scene, imgFlip,...
-            curTexts,blockTime,delayOff(idx),choiceOff(idx),feedbackOff(idx),trustOff(idx));
+            curTexts,curTextsBorders, curTextsStocks, blockTime,delayOff(idx),choiceOff(idx),feedbackOff(idx),trustOff(idx));
       
      % Record the rest of the data that is not saved above or in the
      % presentation script
