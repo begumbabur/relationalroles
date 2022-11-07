@@ -110,18 +110,18 @@ Screen('TextSize', window, 22);
         if scene == 1
             if respMat(1) == 1
                 newscene = 4
-                stock = 3
+                stock = 2
             elseif respMat(1) == 2
                 newscene = 3
-                stock = 4
+                stock = 3
             end
         elseif scene == 2
              if respMat(1) == 1
                 newscene = 1
-                stock = 4
+                stock = 3
             elseif respMat(1) == 2
                 newscene = 2
-                stock = 3
+                stock = 2
              end
          
         elseif scene == 3
@@ -130,12 +130,12 @@ Screen('TextSize', window, 22);
                 stock = 2
             elseif respMat(1) == 2
                 newscene = 8
-                stock = 6
+                stock = 3
              end
          elseif scene == 4
              if respMat(1) == 1
                 newscene = 6
-                stock = 6
+                stock = 3
             elseif respMat(1) == 2
                 newscene = 5
                 stock = 2
@@ -143,7 +143,7 @@ Screen('TextSize', window, 22);
          elseif scene == 5
              if respMat(1) == 1
                 newscene = 11
-                stock = 5
+                stock = 4
             elseif respMat(1) == 2
                 newscene = 12
                 stock = 1
@@ -154,7 +154,7 @@ Screen('TextSize', window, 22);
                 stock = 1
             elseif respMat(1) == 2
                 newscene = 9
-                stock = 5
+                stock = 4
              end
         end
       Screen('DrawTexture', window, curTextsBorders(newscene), source_rect, box2); %display who you picked

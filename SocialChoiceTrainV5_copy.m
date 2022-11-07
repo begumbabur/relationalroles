@@ -284,22 +284,19 @@ texturePtrsBorders=[b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12];
 %Feed in the stock images
 s1img=imread('Octopus', 'PNG');
 s2img=imread('Dolphin', 'PNG');
-s3img=imread('Butterfly', 'PNG');
-s4img=imread('Elephant', 'PNG');
-s5img=imread('Parrot', 'PNG');
-s6img=imread('Porcupine', 'PNG');
+s3img=imread('Elephant', 'PNG');
+s4img=imread('Butterfly', 'PNG');
 
-icons={'Octopus','Dolphin','Butterfly' 'Elephant', 'Parrot', 'Porcupine'}; % TODO REPLACE CHARS
+
+icons={'Octopus','Dolphin','Elephant', 'Butterfly'}; % TODO REPLACE CHARS
 
 % Create stock images
 s1=Screen('MakeTexture', window, double(s1img));
 s2=Screen('MakeTexture', window, double(s2img));
 s3=Screen('MakeTexture', window, double(s3img));
 s4=Screen('MakeTexture', window, double(s4img));
-s5=Screen('MakeTexture', window, double(s5img));
-s6=Screen('MakeTexture', window, double(s6img));
 
-texturePtrsStocks=[s1 s2 s3 s4 s5 s6];
+texturePtrsStocks=[s1 s2 s3 s4];
 
 %Read instructions from text file
     instruct_text=text2cells('instructionsTrain.txt');
@@ -765,7 +762,7 @@ for idx = 1:nTrials % trial loop TODO add rank-invis info
      curGNoise=gNoise(idx,:);       % Noise to add to competence on this trial
      curTexts=texturePtrs(1:6);
      curTextsBorders=texturePtrsBorders(1:12);
-     curTextsStocks=texturePtrsStocks(1:6);
+     curTextsStocks=texturePtrsStocks(1:4);
         respmat(idx,21) = GetSecs - blockTime; % trial start relative to beginning of block 
 
         % Call presentSocialChoiceTrainV5 function to show a trial
