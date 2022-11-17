@@ -298,6 +298,18 @@ s4=Screen('MakeTexture', window, double(s4img));
 
 texturePtrsStocks=[s1 s2 s3 s4];
 
+%localizer images
+files=dir('localizer_imgs/*.jpg');
+cd('localizer_imgs')
+loc_imgs=cell(1,32);
+loc_txtrs=cell(1,32);
+for i=1:32
+    loc_imgs{i}=imread(files(i).name);
+    loc_txtrs{i}=Screen('MakeTexture',window, double(loc_imgs{i}));
+end
+ 
+cd('..')
+
 %Read instructions from text file
     instruct_text=text2cells('instructionsTrain.txt');
 % Start psychtoolbox screen with black background
@@ -750,7 +762,35 @@ Screen('FillRect', window, [0 0 0]);
     Screen('Flip', window);
      while(GetSecs-blockTime)<10;
      end
-         
+source_rect=[2,2,295,295];
+
+% LOCALIZER
+p = randperm(32);
+for i = 1:32
+    Screen('DrawTexture', window, loc_txtrs{p(i)}, source_rect, box2);
+    Screen('Flip', window);
+    WaitSecs(1.5);
+    Screen('FillRect', window, [0 0 0]);
+    [ready_x, ready_y, ready_box] = DrawFormattedText(window, '+', 'center', 'center', [255 255 255],((scr_rect(3)-100)/12));
+    Screen('Flip', window);
+    WaitSecs(8);
+
+end    
+
+p = randperm(32);
+for i = 1:32
+    Screen('DrawTexture', window, loc_txtrs{p(i)}, source_rect, box2);
+    Screen('Flip', window);
+    WaitSecs(1.5);
+    Screen('FillRect', window, [0 0 0]);
+    [ready_x, ready_y, ready_box] = DrawFormatt2edText(window, '+', 'center', 'center', [255 255 255],((scr_rect(3)-100)/12));
+    Screen('Flip', window);
+    WaitSecs(8);
+
+end   
+
+
+     
 for idx = 1:nTrials % trial loop TODO add rank-invis info
        
     
