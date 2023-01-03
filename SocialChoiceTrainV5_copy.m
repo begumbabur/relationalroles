@@ -764,11 +764,36 @@ Screen('FillRect', window, [0 0 0]);
      end
 source_rect=[2,2,295,295];
 
+line_height = round(scr_rect(4)/4);
+
+%Localizer 2: Social Concept
+[num,text,raw] = xlsread("social_concept_stim.xls")
+
+for i = 1:32
+   [x, y, box] = DrawFormattedText(window, text{7+i,3}, 'center', 'center', [255 255 255]); 
+   [x, y, box] = DrawFormattedText(window, text{7+i,4}, 'center', 'center', [255 255 255],[],[],[],[],[],[0 1200 1800 0]); 
+   [x, y, box] = DrawFormattedText(window, text{7+i,7},'center', 'center',[255 255 255], [],[],[],[],[],[900 1200 0 0]); 
+   [x, y, box] = DrawFormattedText(window, 'Left or right?', 'center', line_height - 50, [255 255 255]);
+
+   Screen('Flip', window);
+   [loc1, loc2] = collectResponse({'1!' '2@', 'ESCAPE'}, 2);  
+    WaitSecs(1.5);
+    Screen('FillRect', window, [0 0 0]);
+    [ready_x, ready_y, ready_box] = DrawFormattedText(window, '+', 'center', 'center', [255 255 255],((scr_rect(3)-100)/12));
+    Screen('Flip', window);
+    WaitSecs(1);
+
+end   
+
+
 % LOCALIZER
 p = randperm(32);
+line_height = round(source_rect(4)/4);
 for i = 1:32
     Screen('DrawTexture', window, loc_txtrs{p(i)}, source_rect, box2);
-    Screen('Flip', window);
+    Screen('TextSize', window, 50);
+   [x, y, box] = DrawFormattedText(window, '.', 'center', 'center', [255 255 255]);    Screen('Flip', window);
+   [loc1, loc2] = collectResponse({'1!' '2@', 'ESCAPE'}, 2);  
     WaitSecs(1.5);
     Screen('FillRect', window, [0 0 0]);
     [ready_x, ready_y, ready_box] = DrawFormattedText(window, '+', 'center', 'center', [255 255 255],((scr_rect(3)-100)/12));
@@ -777,17 +802,6 @@ for i = 1:32
 
 end    
 
-p = randperm(32);
-for i = 1:32
-    Screen('DrawTexture', window, loc_txtrs{p(i)}, source_rect, box2);
-    Screen('Flip', window);
-    WaitSecs(1.5);
-    Screen('FillRect', window, [0 0 0]);
-    [ready_x, ready_y, ready_box] = DrawFormatt2edText(window, '+', 'center', 'center', [255 255 255],((scr_rect(3)-100)/12));
-    Screen('Flip', window);
-    WaitSecs(8);
-
-end   
 
 
      

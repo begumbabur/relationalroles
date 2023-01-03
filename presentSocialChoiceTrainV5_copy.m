@@ -45,8 +45,6 @@ me=Screen('MakeTexture', window, double(meimg));
 %   while(GetSecs - blockTime)<cueOff;
 %   end
 
-
-    
  %%%%% SHOW CHOICE, RECORD RESPONSE
     Screen('DrawTexture', window, faces(scene), source_rect, box2);
    % Screen('DrawTexture', window, faces(imgFlip), source_rect, box3); 
